@@ -5,6 +5,9 @@ import json
 import os
 import hackathon_params as hp
 import sys
+from guppy import hpy
+
+mem = hpy()
 
 jsonfile = sys.argv[1]
 
@@ -90,3 +93,8 @@ while steps < total_steps:
     filepath = os.path.join('Data', sumatra_label)
     filename = 'c_var_outputs.txt'
     np.savetxt(os.path.join(filepath, filename), np.array(c_var))
+    
+#Keep track os how much memory was used and dump into a txt file
+memory = mem.heap()
+filename2 = 'memory_usage.txt'
+np.savetxt(os.path.join(filepath, filename2), memory.size()
